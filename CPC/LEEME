@@ -1,2 +1,14 @@
-para compilar el project necesitas
+Modificado el codigo para permitir la compilacion con
+PASMO
 SJASMPLUS
+WINAPE
+
+para compilar con PASMO ejecuta
+pasmo --equ WINAPE=0 example_borde.asm prueba.bin
+
+para compilar con SJASMPLUS ejecuta
+sjasmplus --nologo --syntax=m -DWINAPE=0 example_borde.asm --raw=prueba.bin
+o direcamente make.bat (tienes que tener sjasmplus y retrovirtualmachine en el path)
+
+para compilar con WINAPE
+abre el fichero make.asm en el ensamblador de winape y pulsa F9
