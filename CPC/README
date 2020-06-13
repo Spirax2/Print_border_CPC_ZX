@@ -1,0 +1,14 @@
+this code can be compiled with
+PASMO
+SJASMPLUS
+WINAPE
+
+to compile it with PASMO exec
+pasmo --equ WINAPE=0 example_borde.asm prueba.bin
+
+to compile it with SJASMPLUS exec
+sjasmplus --nologo --syntax=m -DWINAPE=0 example_borde.asm --raw=prueba.bin
+or just make.bat (you muist have sjasmplus & retrovirtualmachine on your path)
+
+to compile it with WINAPE
+open the file make.asm on winape's aseembler and press F9
