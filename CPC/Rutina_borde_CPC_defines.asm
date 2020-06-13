@@ -58,11 +58,11 @@
 	define linea5		linea4+29
 	
 	define interrupcion_anterior linea5+29 ;DW
-
-	define direcciontexto 	interrupcion_anterior+2 ;DW
+	define cambio_interrupcion interrupcion_anterior+2 ;DW
+	
+	define direcciontexto 	cambio_interrupcion+2 ;DW
 	define textoactual 	direcciontexto+2 ;DW
 	define contadorinterrupcion	textoactual+2
-
 
 	define pixelesrotar 	contadorinterrupcion+1
 	define ultimocaracter 	pixelesrotar+1
