@@ -36,8 +36,7 @@ texto0:
 	defb "   IMPRESION EN BORDE BY SPIRAX   ",0
 endtexto0:
 
-	include "interrupciones_CPC_RAM.asm"
-	include "interrupciones_CPC_ROM.asm"
+	include "interrupciones_CPC.asm"
 	include "Rutina_borde_CPC.asm"
   display "Final rutina ",/d,$, " Bytes ",/d,$ - arranca
 	
