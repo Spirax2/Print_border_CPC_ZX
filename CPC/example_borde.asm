@@ -1,7 +1,11 @@
 
+	IF WINAPE=1
+	READ "Rutina_borde_CPC_Defines.asm"
+	ELSE
 	include "Rutina_borde_CPC_Defines.asm"
+	ENDIF
 
-	org $8000
+	org #8000
 arranca:
 	call int_init		;reinicia las interrupciones para impresion_borde
 
@@ -36,7 +40,13 @@ texto0:
 	defb "   IMPRESION EN BORDE BY SPIRAX   ",0
 endtexto0:
 
+	IF WINAPE=1
+	READ "interrupciones_CPC.asm"
+	READ "Rutina_borde_CPC.asm"
+	ELSE
 	include "interrupciones_CPC.asm"
 	include "Rutina_borde_CPC.asm"
-  display "Final rutina ",/d,$, " Bytes ",/d,$ - arranca
-	
+;	display "Final rutina ",/d,$, " Bytes ",/d,$ - arranca
+	ENDIF
+
+ 	

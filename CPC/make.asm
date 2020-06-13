@@ -1,7 +1,9 @@
 write direct
 run starthere
 
+WINAPE EQU 1
 org &8000
 starthere
-incbin ".\prueba.bin"
+read "example_borde.asm"
+
 	

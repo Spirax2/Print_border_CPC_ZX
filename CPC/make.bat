@@ -1,5 +1,5 @@
 @echo Compilando con sjasmplus
-@sjasmplus --nologo --syntax=m example_borde.asm --raw=prueba.bin
+@sjasmplus --nologo --syntax=m -DWINAPE=0 example_borde.asm --raw=prueba.bin
 if errorlevel 1 goto error_compilando
 
 @echo iniciando RetroVirtualMachine

@@ -64,9 +64,9 @@ int_init:
 	ld hl, #38
 	ld (hl), #C3			;place JP opt code on RST #38
 	inc l
-	ld (hl), low interrupcion_ISR	;Place low address of ISR on #39
+	ld (hl), interrupcion_ISR and #FF	;Place low address of ISR on #39
 	inc l
-	ld (hl), high interrupcion_ISR	;Place High address of ISR on #3A
+	ld (hl), interrupcion_ISR/#FF	;Place High address of ISR on #3A
 	ei				;enable interrupts
 
 	call wait_vsync			;wait for Vertical Sync signal

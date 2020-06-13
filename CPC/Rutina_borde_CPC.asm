@@ -42,7 +42,7 @@ stop_border_efect:
 ;MODIFICA	HL, DE, BC
 create_lines:
 	ld hl, linea1
-	ld de, $ED79	;$ED,$79 = OUT (C),a
+	ld de, #ED79	;$ED,$79 = OUT (C),a
 	ld c, 05
 modify_return_line:
 	ld b, 14
@@ -70,7 +70,7 @@ print_letras_borde:
 	ld hl, colorletra1 * 256 + colorletra2
 	ld de, colorletra3 * 256 + colorletra4
 
-	ld bc, $7F10
+	ld bc, #7F10
 	out (c), c
 	ld a, colorborde1	;for the out (c),a 
 
@@ -187,7 +187,7 @@ caracter_imprimir:
 	rla
 	rla
 	rla			;lo rotamos 3 bits y el valor serб, $00, $08, $10, $18 
-	add $51			;le sumamos $51 y tendremos el segundo byte del OUT (C),hlde
+	add a, #51			;le sumamos $51 y tendremos el segundo byte del OUT (C),hlde
 	ld (colorletra), a	;lo guardmaos en colorletra
 
 	ld a, (de)		;caracter a imprimir
@@ -223,7 +223,7 @@ modify_outs:
 caracter_font:
 	push hl
 	ld a, (de)		;cargamos el origen de la fuente
-	ex af, af		;guardamos el caracter
+	ex af, af'		;guardamos el caracter
 	
 	ld a, (ultimocaracter)
 	or a
@@ -233,33 +233,33 @@ caracter_font:
 	ld b, 4 		;numero de pixels a tratar, la fuente tiene 4 pero el derecho es siempre 0
 	jr z, iniciorotacionfont
 	ld b, a
-	ex af, af
+	ex af, af'
 buclerotacionajuste:
 	rla
 	dec b
 	jr nz, buclerotacionajuste
-	ex af, af
+	ex af, af'
 	cpl
 	and 3
 	inc a
 salto_ultimo_caracter:
 	ld b, a
 iniciorotacionfont:	
-	ex af, af
+	ex af, af'
 bucle_font:
 	inc hl			;nos saltamos el $ED
 	rla			;ratamos la fuente
 	jr c, carryenfont	;si hay carry hay poner color
-	ld (hl), $79		;out (c), a
+	ld (hl), #79		;out (c), a
 	inc hl			;siguiente pixel
 	djnz bucle_font
 	jr continuafont
 
 carryenfont:
-	ex af, af
+	ex af, af'
 	ld a, (colorletra)
 	ld (hl), a		;out (c), hlde
-	ex af, af
+	ex af, af'
 	inc hl			;siguiente pixel
 	djnz bucle_font
 
@@ -278,5 +278,8 @@ nocarryonsiguientelinea
 
 
 ;font
+	IF WINAPE=1
+	READ "Rutina_borde_CPC_Font_4x5.ASM"
+	ELSE
 	include "Rutina_borde_CPC_Font_4x5.ASM"
-	
+	ENDIF
